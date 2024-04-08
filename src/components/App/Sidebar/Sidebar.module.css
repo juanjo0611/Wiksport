@@ -1,5 +1,6 @@
 .app_sidebar {
   background-color: var(--dark-gray-sidebar);
+  min-width: 240px;
 }
 
 .app_sidebar_ul {
@@ -20,4 +21,8 @@
   color: #fff;
   padding: 10px;
   font-size: 1.1rem;
+}
+
+.app_sidebar_link:hover {
+  background-color: #262626;
 }

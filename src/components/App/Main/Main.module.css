@@ -1,3 +1,9 @@
 .app_main {
   background-color: var(--dark-gray-main);
+  color: #fff;
+}
+
+.app_main_title {
+  margin: 10px 0 0 0;
+  text-align: center;
 }
