@@ -1,0 +1,23 @@
+.app_sidebar {
+  background-color: var(--dark-gray-sidebar);
+}
+
+.app_sidebar_ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app_sidebar_li {
+
+}
+
+.app_sidebar_link {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  font-size: 1.1rem;
+}

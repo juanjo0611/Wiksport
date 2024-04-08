@@ -1,0 +1,12 @@
+.app_content_box {
+  display: flex;
+  height: calc(100vh - 90px);
+}
+
+.app_content_box aside {
+  flex-grow: 2;
+}
+
+.app_content_box main {
+  flex-grow: 20;
+}
