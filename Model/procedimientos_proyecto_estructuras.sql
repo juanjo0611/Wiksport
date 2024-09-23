@@ -28,7 +28,7 @@ delimiter ;
 drop procedure if exists search_one_ejercicio;
 delimiter $$
 # busca los datos de un ejercicio
-create procedure search__one_ejercicio(IN S_id_ejercicio int)
+create procedure search_one_ejercicio(IN S_id_ejercicio int)
 begin 
 select * from ejercicio where Id_ejercicio = S_id_ejercicio;
 end $$
@@ -105,7 +105,7 @@ delete from rutina where Id_rutins=E_id_rutina;
 end$$
 delimiter ;
 
-drop procedure clonar_rutina;
+drop procedure if exists clonar_rutina;
 delimiter $$
 create procedure clonar_rutina (in S_id_rutina int, in S_username varchar(30))
 begin
