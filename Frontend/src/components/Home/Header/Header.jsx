@@ -25,7 +25,7 @@ const Header = () => {
             <Link to='/registrarse'>Registrarse</Link>
           </li>
           <li className={css.home_header_nav_li}>
-            <Link to='/panel'>Registrarse</Link>
+            <Link to='/panel'>Panel</Link>
           </li>
         </ul>
       </nav>

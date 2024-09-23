@@ -4,7 +4,7 @@ import Footer from "../../components/App/Footer/Footer"
 import ContentBox from "../../components/App/ContentBox/ContentBox"
 import Main from "../../components/App/Main/Main"
 import getData from "./dataGenerator"
-import Queue from "../../logic/Data Structures/Queue"
+import Queue from "../../services/Data Structures/Queue"
 import css from "./Calendar.module.css"
 
 const DayCell = ({number, routine}) => {
