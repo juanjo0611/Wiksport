@@ -1,9 +1,9 @@
-import { callProcedure } from "../../config/call_procedure.js"
+import { callFunction } from "../../config/call_function.js";
 
 const check_user = async ({username, password}) => {
   try {
-    const response = await callProcedure({
-      procedureName: 'login_user',
+    const response = await callFunction({
+      functionName: 'login_user',
       params: [username, password]
     });
     return response;
