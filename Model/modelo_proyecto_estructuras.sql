@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS Usuario;
 CREATE TABLE Usuario(
 Id_usuario INT auto_increment,
 Username varchar(30) UNIQUE NOT NULL,
-contrasenia bigint NOT NULL,
+contrasenia varchar(50) NOT NULL,
 Imagen text,
 Nombre varchar(20) not null,
 Apellido varchar(20) not null,
