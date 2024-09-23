@@ -1,7 +1,11 @@
 CREATE SCHEMA IF NOT EXISTS Proyecto_Estructuras;
 USE Proyecto_Estructuras;
 
+Drop table if exists Rutina_ejercicio;
+Drop table if exists Rutina;
+Drop table if exists Ejercicio;
 DROP TABLE IF EXISTS Usuario;
+
 CREATE TABLE Usuario(
 Id_usuario INT auto_increment,
 Username varchar(30) UNIQUE NOT NULL,
@@ -14,7 +18,7 @@ Edad tinyint unsigned not null,
 PRIMARY KEY(Id_usuario)
 );
 
-Drop table if exists Ejercicio;
+
 create table Ejercicio (
 Id_ejercicio int auto_increment,
 Nombre_ejercicio varchar(60) not null, # se busca con esto
@@ -25,7 +29,7 @@ Musculo Varchar(150) not null,
 Primary key(Id_ejercicio)
 );
 
-Drop table if exists Rutina;
+
 Create table Rutina (
 Id_rutina int auto_increment,
 Nombre_rutina varchar(60) not null,
@@ -37,7 +41,7 @@ Primary key (Id_rutina),
 constraint Rutina_id_usuario foreign key (Id_usuario) references Usuario(Id_usuario)
 );
 
-Drop table if exists Rutina_ejercicio;
+
 create table Rutina_ejercicio (
 Id_rutina int not null,
 Id_ejercicio int not null,
