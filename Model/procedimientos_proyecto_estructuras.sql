@@ -17,6 +17,15 @@ select true into user_exists from Usuario where Username = N_username and contra
 return user_exists;
 end $$
 delimiter ;
+
+drop procedure if exists login;
+delimiter $$
+create procedure login (IN N_username varchar(30))
+begin
+select Username, constrasenia from usuario where Username=N_username;
+end $$
+delimiter ;
+
 drop procedure if exists search_ejercicios;
 delimiter $$
 # busca ejercicios
