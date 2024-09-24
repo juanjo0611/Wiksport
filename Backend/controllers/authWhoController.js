@@ -9,6 +9,7 @@ export const whoAmI = async (req, res) => {
     res.status(200).json({
       content: {
         name: token_content.name,
+        img: token_content.img,
         role: ROLES.USER,
       }
     });

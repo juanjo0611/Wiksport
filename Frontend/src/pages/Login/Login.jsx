@@ -3,6 +3,10 @@ import SessionForm from "../../components/Home/SessionForm/SessionForm";
 import css from './Login.module.css'
 
 const Login = () => {
+  const login = event => {
+    event.preventDefault();
+  }
+  
   return (
     <>
       <Header />
