@@ -7,6 +7,7 @@ BEgin
 insert into Usuario (Username,contrasenia,Imagen,Nombre,Apellido,Peso,Altura,Edad) values (N_username,N_contrasenia,N_imagen,N_nombre,N_apellido,N_peso,N_altura,N_edad);
 End $$
 delimiter ;
+
 -- call create_user("ju", "1","jj","a","aa",10.2,1.25,14);
 -- call create_user("j", "1","jj","a","aa",10.2,1.25,14);
 -- select * from usuario;
@@ -67,6 +68,7 @@ BEGIN
             'Id_ejercicio', Id_ejercicio,
             'Posicion', Posicion,
             'Nombre', Nombre_ejercicio,
+            'Imagen',Imagen,
             'Dificultad', Dificultad,
             'Categoria', Categoria,
             'Descripcion', Descripcion,
@@ -165,7 +167,6 @@ delimiter ;
 
 -- select * from rutina;
 -- select * from rutina_ejercicio;
-
 
 drop procedure if exists info_user;
 delimiter $$

@@ -35,6 +35,7 @@ constraint Rutina_id_usuario foreign key (Id_usuario) references Usuario(Id_usua
 create table Ejercicio (
 Id_ejercicio int auto_increment,
 Nombre_ejercicio varchar(60) not null, # se busca con esto
+Imagen text,
 Dificultad tinyint unsigned not null, #necesita un trigger
 Categoria Varchar(20),
 Descripcion text not null,
