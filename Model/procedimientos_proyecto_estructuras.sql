@@ -7,8 +7,8 @@ BEgin
 insert into Usuario (Username,contrasenia,Imagen,Nombre,Apellido,Peso,Altura,Edad) values (N_username,N_contrasenia,N_imagen,N_nombre,N_apellido,N_peso,N_altura,N_edad);
 End $$
 delimiter ;
-call create_user("ju", "1","jj","a","aa",10.2,1.25,14);
-call create_user("j", "1","jj","a","aa",10.2,1.25,14);
+-- call create_user("ju", "1","jj","a","aa",10.2,1.25,14);
+-- call create_user("j", "1","jj","a","aa",10.2,1.25,14);
 -- select * from usuario;
 
 drop function if exists login_user;
@@ -32,7 +32,7 @@ select Username, constrasenia from usuario where Username=N_username;
 end $$
 delimiter ;
 
-insert into ejercicio values (1, "test",5,"a","ss","kkw");
+-- insert into ejercicio values (1, "test",5,"a","ss","kkw");
 
 drop procedure if exists search_ejercicios;
 delimiter $$
@@ -43,7 +43,7 @@ select * from ejercicio ;
 end $$
 delimiter ;
 
-call search_ejercicios();
+-- call search_ejercicios();
 
 drop procedure if exists search_one_ejercicio;
 delimiter $$
@@ -54,7 +54,7 @@ select * from ejercicio where Id_ejercicio = S_id_ejercicio;
 end $$
 delimiter ;
 
-call search_one_ejercicio (1);
+-- call search_one_ejercicio (1);
 
 drop function if exists ejercicios_rutina;
 delimiter $$
@@ -84,7 +84,7 @@ BEGIN
 END $$
 delimiter ;
 
-select ejercicios_rutina(1);
+-- select ejercicios_rutina(1);
 
 drop procedure if exists search_rutina;
 delimiter $$
@@ -101,8 +101,8 @@ select Id_rutina, Nombre_rutina, Nivel, Tiempo_descanzo_serie, Tiempo_descanzo_e
 end $$
 delimiter ;
 
-select * from rutina;
-call search_rutina(null);
+-- select * from rutina;
+-- call search_rutina(null);
 
 drop procedure if exists create_rutina;
 delimiter $$
@@ -117,8 +117,8 @@ N_tiempo_descanzo_serie,N_tempo_descanzo_ejercicio,N_id_usuario);
 end $$
 delimiter ;
 
-call create_rutina("a","principiante",5,5,null);
-select * from rutina;
+-- call create_rutina("a","principiante",5,5,null);
+-- select * from rutina;
 
 drop procedure if exists asociar_rutina_ejercicio;
 delimiter $$
@@ -129,9 +129,9 @@ insert into rutina_ejercicio values (N_id_rutina,N_id_ejercicio,N_posicion,N_can
 End$$
 delimiter ;
 
-call asociar_rutina_ejercicio(1,1,1,1,"T",1);
+-- call asociar_rutina_ejercicio(1,1,1,1,"T",1);
 
-select * from rutina_ejercicio;
+-- select * from rutina_ejercicio;
 
 drop procedure if exists drop_rutina;
 delimiter $$
@@ -141,7 +141,7 @@ delete from rutina where Id_rutina=E_id_rutina;
 end$$
 delimiter ;
 
-call drop_rutina(2);
+-- call drop_rutina(2);
 
 drop procedure if exists clonar_rutina;
 delimiter $$
@@ -161,10 +161,10 @@ INSERT INTO rutina_ejercicio
 end $$
 delimiter ;
 
-call clonar_rutina(1,"j");
+-- call clonar_rutina(1,"j");
 
-select * from rutina;
-select * from rutina_ejercicio;
+-- select * from rutina;
+-- select * from rutina_ejercicio;
 
 
 drop procedure if exists info_user;
@@ -176,7 +176,7 @@ select Username, Imagen,Nombre, Apellido, Peso, Altura, Edad from usuario where 
 end $$
 delimiter ;
 
-call info_user("j");
+-- call info_user("j");
 
 
 
