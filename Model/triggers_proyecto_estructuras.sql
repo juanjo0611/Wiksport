@@ -16,7 +16,7 @@ delimiter $$
 create trigger insert_rutina_ejercicio_posicion before insert on rutina_ejercicio for each row
 begin
 declare next_posicion boolean default false;
-select true into next_posicion from ruitna_ejercicio where Id_rutina=new.Id_rutina and Posicion = new.Posicion -1;
+select true into next_posicion from ruitna_ejercicio where Id_rutina=new.Id_rutina and Posicion = new.Posicion -1 or new.Posicion=1;
 if not next_posicion then
 signal sqlstate '45000' set MESSAGE_TEXT = 'Se necesitan posiciones concecutivas para insertar ejercicios en una rutina';
 end if;

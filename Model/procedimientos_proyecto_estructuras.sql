@@ -2,11 +2,15 @@ USE proyecto_estructuras;
 drop procedure if exists create_user;
 Delimiter $$
 # crea un usuario se le pason los datos basicos del usuario
-CREATE procedure create_user (IN N_username varchar(30), IN N_constrasenia bigint,IN N_imagen text,in N_nombre varchar(20),IN N_apellido varchar(20),in N_peso decimal(4,1),in N_altura decimal(3,2),IN N_edad tinyint unsigned)
+CREATE procedure create_user (IN N_username varchar(30), IN N_contrasenia varchar(50),IN N_imagen text,in N_nombre varchar(20),IN N_apellido varchar(20),in N_peso decimal(4,1),in N_altura decimal(3,2),IN N_edad tinyint unsigned)
 BEgin
-insert into Usuario (Username,constrasenia,Imagen,Nombre,Apellido,Peso,Altura,Edad) values (N_username,N_contrasenia,N_imagen,N_nombre,N_apellido,N_peso,N_altura,N_edad);
+insert into Usuario (Username,contrasenia,Imagen,Nombre,Apellido,Peso,Altura,Edad) values (N_username,N_contrasenia,N_imagen,N_nombre,N_apellido,N_peso,N_altura,N_edad);
 End $$
 delimiter ;
+-- call create_user("ju", "1","jj","a","aa",10.2,1.25,14);
+-- call create_user("j", "1","jj","a","aa",10.2,1.25,14);
+-- select * from usuario;
+
 drop function if exists login_user;
 delimiter $$
 # verifica que el usuario exista y esa sea su contraseña, devuelve un true si con el usuario y contraseña se puede iniciar una secion
@@ -18,6 +22,8 @@ return user_exists;
 end $$
 delimiter ;
 
+-- select login_user ("ju","0"); -- devuelve 1 o 0 dependiendo si es true o false
+
 drop procedure if exists login;
 delimiter $$
 create procedure login (IN N_username varchar(30))
@@ -25,6 +31,8 @@ begin
 select Username, constrasenia from usuario where Username=N_username;
 end $$
 delimiter ;
+
+-- insert into ejercicio values (1, "test",5,"a","ss","kkw");
 
 drop procedure if exists search_ejercicios;
 delimiter $$
@@ -34,6 +42,9 @@ begin
 select * from ejercicio ;
 end $$
 delimiter ;
+
+-- call search_ejercicios();
+
 drop procedure if exists search_one_ejercicio;
 delimiter $$
 # busca los datos de un ejercicio
@@ -42,6 +53,9 @@ begin
 select * from ejercicio where Id_ejercicio = S_id_ejercicio;
 end $$
 delimiter ;
+
+-- call search_one_ejercicio (1);
+
 drop function if exists ejercicios_rutina;
 delimiter $$
 CREATE FUNCTION ejercicios_rutina (S_id_rutina INT) RETURNS JSON reads sql data
@@ -69,6 +83,9 @@ BEGIN
     RETURN ejercicios;
 END $$
 delimiter ;
+
+-- select ejercicios_rutina(1);
+
 drop procedure if exists search_rutina;
 delimiter $$
 # busca rutinas por el nombre de usuario de creacion, si se le basa un null en este campo busca las rutinas publicas (colocadas por el admin)
@@ -80,9 +97,12 @@ set S_id_usuario = Null;
 else
 set S_id_usuario= (select Id_usuario from usuario where Username=id_username);
 END IF;
-select Id_rutina, Nombre_rutina, Nivel, Tiempo_descanzo_serie, Tiempo_descanzo_ejercicio, ejercicios_rutina(Id_rutina) as ejercicios from rituna where Id_usuario = S_id_usuario;
+select Id_rutina, Nombre_rutina, Nivel, Tiempo_descanzo_serie, Tiempo_descanzo_ejercicio, ejercicios_rutina(Id_rutina) as ejercicios from rutina where Id_usuario = S_id_usuario or (Id_usuario is Null and S_id_usuario is Null);
 end $$
 delimiter ;
+
+-- select * from rutina;
+-- call search_rutina(null);
 
 drop procedure if exists create_rutina;
 delimiter $$
@@ -97,6 +117,9 @@ N_tiempo_descanzo_serie,N_tempo_descanzo_ejercicio,N_id_usuario);
 end $$
 delimiter ;
 
+-- call create_rutina("a","principiante",5,5,null);
+-- select * from rutina;
+
 drop procedure if exists asociar_rutina_ejercicio;
 delimiter $$
 create procedure asociar_rutina_ejercicio (in N_id_rutina int,in N_id_ejercicio int,in N_posicion smallint unsigned,in N_cantidad_series smallint unsigned,
@@ -106,13 +129,19 @@ insert into rutina_ejercicio values (N_id_rutina,N_id_ejercicio,N_posicion,N_can
 End$$
 delimiter ;
 
+-- call asociar_rutina_ejercicio(1,1,1,1,"T",1);
+
+-- select * from rutina_ejercicio;
+
 drop procedure if exists drop_rutina;
 delimiter $$
 create procedure drop_rutina (IN E_id_rutina int)
 begin 
-delete from rutina where Id_rutins=E_id_rutina;
+delete from rutina where Id_rutina=E_id_rutina;
 end$$
 delimiter ;
+
+-- call drop_rutina(2);
 
 drop procedure if exists clonar_rutina;
 delimiter $$
@@ -122,11 +151,21 @@ declare S_id_usuario int;
 declare N_id_rutina int;
 set S_id_usuario =(select Id_usuario from usuario where Username=S_username);
 insert into rutina(Nombre_rutina, Nivel, Tiempo_descanzo_serie, Tiempo_descanzo_ejercicio, Id_usuario) (select Nombre_rutina,Nivel, Tiempo_descanzo_serie, Tiempo_descanzo_ejercicio,S_id_usuario from rutina where Id_rutina=S_id_rutina); 
--- set N_id_rutina = (select max(Id_rutina)from rutina);
-set N_id_rutina = LAST_INSERT_ID();
-insert into rutina_ejercicio (select N_id_rutina, Id_ejercicio, Posicion, Cantidad_series, Tipo_ejecucion, Cantidad_ejercicios from rutina_ejercicio where Id_rutina=S_id_rutina order by Posicion);
+set N_id_rutina = (select max(Id_rutina)from rutina);
+-- set N_id_rutina = LAST_INSERT_ID();
+INSERT INTO rutina_ejercicio
+    SELECT N_id_rutina, Id_ejercicio, Posicion, Cantidad_series, Tipo_ejecucion, Cantidad_ejercicios
+    FROM rutina_ejercicio
+    WHERE Id_rutina = S_id_rutina
+    ORDER BY Posicion;
 end $$
 delimiter ;
+
+-- call clonar_rutina(1,"j");
+
+-- select * from rutina;
+-- select * from rutina_ejercicio;
+
 
 drop procedure if exists info_user;
 delimiter $$
@@ -137,6 +176,7 @@ select Username, Imagen,Nombre, Apellido, Peso, Altura, Edad from usuario where 
 end $$
 delimiter ;
 
+-- call info_user("j");
 
 
 
