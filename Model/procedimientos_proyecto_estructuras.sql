@@ -15,7 +15,7 @@ delimiter ;
 drop function if exists login_user;
 delimiter $$
 # verifica que el usuario exista y esa sea su contraseña, devuelve un true si con el usuario y contraseña se puede iniciar una secion
-Create  function login_user (N_username varchar(30),N_contrasenia bigint) returns boolean deterministic
+Create  function login_user (N_username varchar(30),N_contrasenia varchar(50)) returns boolean deterministic
 begin
 declare user_exists boolean default false;
 select true into user_exists from Usuario where Username = N_username and contrasenia = N_contrasenia;
