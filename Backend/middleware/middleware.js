@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { ROLES, SECRET } from '../utilities/globalVariables';
+import { ROLES, SECRET } from '../utilities/globalVariables.js';
 
 export const middleware = (req, res, next) => {
+  console.log('MIDDLEWARE');
   const token = req.header('x-auth-token') ?? '';
   try {
     const token_content = jwt.verify(token, SECRET);

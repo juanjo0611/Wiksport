@@ -2,9 +2,7 @@ import check_user from "../procedures/user/check_user.js";
 import get_info_user from "../procedures/user/get_info_user.js";
 
 export const login = async(req, res) => {
-  // const {username, password} = req.body;
-  const username = 'username';
-  const password = 'password';
+  const {username, password} = req.body;
 
   // Revisar que los tipos de datos sean los correctos
   if (typeof username !== 'string' || typeof password !== 'string') {
