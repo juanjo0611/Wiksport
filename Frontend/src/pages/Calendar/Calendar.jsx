@@ -1,4 +1,4 @@
-import Header from "../../components/App/Header/Header"
+import Header from "../../components/site/Header/Header"
 import Sidebar from "../../components/App/Sidebar/Sidebar"
 import Footer from "../../components/App/Footer/Footer"
 import ContentBox from "../../components/App/ContentBox/ContentBox"
@@ -6,6 +6,10 @@ import Main from "../../components/App/Main/Main"
 import getData from "./dataGenerator"
 import Queue from "../../services/Data Structures/Queue"
 import css from "./Calendar.module.css"
+import { useContext, useEffect } from "react"
+import { WhoContext } from "../../Routes"
+import { useNavigate } from "react-router-dom"
+import { ROLES } from "../../data/data"
 
 const DayCell = ({number, routine}) => {
   //return (
@@ -14,6 +18,14 @@ const DayCell = ({number, routine}) => {
 }
 
 const Calendar = () => {
+  const { who } = useContext(WhoContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (who.role !== undefined && who.role === ROLES.GENERAL) {
+      navigate('/')
+    }
+  }, [who.role])
 
   const list = getData(10);
 
@@ -37,7 +49,7 @@ const Calendar = () => {
         <Sidebar />
         <Main title="Calendario">
 
-        <div class={css.calendar_container}>
+        <div className={css.calendar_container}>
           {days.map((e, i) => (
             <div className={css.dayCell} key={i}>
               <span>Día {i + 1}</span>

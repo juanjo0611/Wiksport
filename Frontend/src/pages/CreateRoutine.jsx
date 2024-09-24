@@ -1,8 +1,8 @@
 import ContentBox from "../components/App/ContentBox/ContentBox"
 import Footer from "../components/App/Footer/Footer"
-import Header from "../components/App/Header/Header"
 import Main from "../components/App/Main/Main"
 import Sidebar from "../components/App/Sidebar/Sidebar"
+import Header from "../components/site/Header/Header"
 
 const CreateRoutine = () => {
   return (

@@ -173,7 +173,7 @@ delimiter $$
 #da la info de un nombre de usuario
 create procedure info_user (in S_username varchar(30))
 begin
-select Username, Imagen,Nombre, Apellido, Peso, Altura, Edad from usuario where Username=S_username;
+select Id_usuario, Username, Imagen,Nombre, Apellido, Peso, Altura, Edad from usuario where Username=S_username;
 end $$
 delimiter ;
 
