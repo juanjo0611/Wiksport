@@ -1,0 +1,29 @@
+.main_title {
+  text-align: center;
+}
+
+.main_section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 10px 10px 10px;
+}
+
+.img_container img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.data_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
+
+.data_container h2 {
+  margin-top: 0;
+}
+
+.data_container span {
+  font-size: 1.05rem;
+}

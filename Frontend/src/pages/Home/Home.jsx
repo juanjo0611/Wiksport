@@ -1,7 +1,13 @@
-import Header from '../../components/Home/Header/Header'
+import { useContext } from 'react'
+import Header from '../../components/site/Header/Header'
 import css from './Home.module.css'
+import { WhoContext } from '../../Routes'
+import VarRender from '../../components/site/VarRender'
+import { ROLES } from '../../data/data'
 
-const Home = () => { 
+const Home = () => {
+  const { who } = useContext(WhoContext)
+
   return (
     <>
       <Header />
@@ -13,7 +19,15 @@ const Home = () => {
         <span className={css.home_motivation_author}>
           Matt Biondi
         </span>
-        <a  className={css.home_btn_cta} href="/panel">Abrir Panel</a>
+        <VarRender render={who?.role === ROLES.GENERAL}>
+          <a className={css.home_btn_cta} href="/registrarse">Registrate</a>
+        </VarRender>
+        <VarRender render={who?.role === ROLES.GENERAL}>
+          <a className={css.home_btn_cta} href="/iniciar-sesion">Inicia sesión</a>
+        </VarRender>
+        <VarRender render={who?.role === ROLES.USER}>
+          <a className={css.home_btn_cta} href="/panel">Ir al Panel</a>
+        </VarRender>
       </main>
     </>
   )

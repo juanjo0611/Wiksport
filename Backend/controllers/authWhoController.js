@@ -1,5 +1,5 @@
-import { jwt } from "jsonwebtoken";
-import { ROLES, SECRET } from "../utilities/globalVariables";
+import jwt from "jsonwebtoken";
+import { ROLES, SECRET } from "../utilities/globalVariables.js";
 
 export const whoAmI = async (req, res) => {
   const token = req.header('x-auth-token') ?? '';
@@ -8,14 +8,14 @@ export const whoAmI = async (req, res) => {
     const token_content = jwt.verify(token, SECRET);
     res.status(200).json({
       content: {
-        name: token_content.name,
-        img: token_content.img,
+        username: token_content?.content?.username,
+        img: token_content?.content?.img,
         role: ROLES.USER,
       }
     });
   }
   catch (error) {
-    res.status(200).json({
+    return res.status(200).json({
       content: {
         role: ROLES.GENERAL
       }
