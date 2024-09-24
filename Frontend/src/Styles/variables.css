@@ -1,8 +1,13 @@
 :root {
   /* Colors */
   --neutral-red: #f21;
+  --normal-red-5: #da1300;
+  --normal-red-10: #fc3522;
   --dark-gray-main: #161616;
   --dark-gray-sidebar: #1f1f1f;
+  --dark-blue-10: #0a141e;
+  --light-gray-10: #efefef;
+  --light-gray-20: #
 
   --color-transition-animation-duration: .2s;
 }

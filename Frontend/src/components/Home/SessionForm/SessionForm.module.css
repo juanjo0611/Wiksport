@@ -1,0 +1,64 @@
+.form_card_container {
+  background-color: #000;
+  padding: 10px 20px 20px 20px;
+  border-radius: 4px;
+  box-shadow: 0 40px 50px #012;
+  width: 90%;
+  max-width: 600px;
+}
+
+.form_card_title {
+  margin: 0;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+.form_wrapper {
+  padding-top: 20px;
+}
+
+.form_wrapper > form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form_wrapper > form > [purpose="field"] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form_wrapper > form > [purpose="field"] > label {
+  color: var(--normal-red-10);
+  color: #eee;
+}
+
+.form_wrapper > form > [purpose="field"] > input {
+  background-color: #213141;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: arial;
+  padding: 5px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.form_wrapper > form > [purpose="submit"] > input{
+  outline: none;
+  border: 0;
+  width: 100%;
+  padding: 4px 4px 8px 4px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  background-color: var(--normal-red-10);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form_wrapper > form > [purpose="submit"] > input:hover {
+  background-color: var(--normal-red-5);
+}

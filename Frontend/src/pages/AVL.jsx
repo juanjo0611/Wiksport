@@ -1,7 +1,7 @@
-import TestList from "../logic/Data Structures/test";
-import AVL from "../logic/Data Structures/AVL";
-import MaxHeap from "../logic/Data Structures/MaxHeap";
-import MaxHeapLinkedList from "../logic/Data Structures/MaxHeapLinkedList";
+import TestList from "../services/Data Structures/test";
+import AVL from "../services/Data Structures/AVL";
+import MaxHeap from "../services/Data Structures/MaxHeap";
+import MaxHeapLinkedList from "../services/Data Structures/MaxHeapLinkedList";
 
 const COMP_AVL = () => {
   const avl = new AVL();
